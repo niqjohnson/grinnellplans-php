@@ -47,9 +47,11 @@ function interface_disp_page(PlansPage $page) {
 function populate_page(PlansPage $page, $dbh, $idcookie) {
     $user = User::get();
     // get the global stylesheet
-    $page->stylesheets[] = 'styles/global.css';
+    $page->stylesheets['global'] = 'styles/global.css';
+    // get default mobile stylesheet
+    $page->stylesheets['mobile'] = 'styles/mobile.css';
     // get user stylesheet
-    $page->stylesheets[] = $user->stylesheet;
+    $page->stylesheets['user'] = $user->stylesheet;
     $myprivl = get_myprivl();
     $page->autoreadpriority = $myprivl;
     $mp = new MainPanel();

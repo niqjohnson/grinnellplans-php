@@ -1,0 +1,493 @@
+	/* ==========================================================================
+		 Sizes
+	   ========================================================================== */
+	
+	body {
+		--gutter-width:           22px;
+		--logo-radius:            45px;
+		--header-padding:         14px;
+		--icon-font-size:         18px;
+		--body-text-size:         16px;
+	}
+	
+	/* ==========================================================================
+	   Colors
+	   ========================================================================== */
+	
+	body {
+		--black:     #101820;
+		--dark-gray: #43484e;
+		--gray:      #5a5d61;
+		--gray-80:   #75787b;
+		--gray-60:   #919395;
+		--gray-40:   #b4b5b6;
+		--gray-20:   #d2d3d5;
+		--gray-10:   #e7e8e9;
+		--gray-5:    #f7f8f9;
+		--white:     #fff;
+	}
+	
+	/* ==========================================================================
+		 Page structure
+	   ========================================================================== */
+	
+	body {
+		margin: 0;
+	}
+	#wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+	#nav {
+		order: 2;
+	}
+	#main {
+		order: 1;
+		padding: 0 var( --gutter-width );
+		margin-top: calc( var( --logo-radius ) + 45px );
+	}
+	#footer {
+		order: 3;
+	}
+	
+	/* ==========================================================================
+		 Global typography
+	   ========================================================================== */
+	
+	@font-face {
+		font-family: 'icomoon';
+		src: url('https://niqjohnson.github.io/plans-styles/mobile/fonts/icomoon.eot?shkte');
+		src: url('https://niqjohnson.github.io/plans-styles/mobile/fonts/icomoon.eot?shkte#iefix') format('embedded-opentype'),
+			 url('https://niqjohnson.github.io/plans-styles/mobile/fonts/icomoon.ttf?shkte') format('truetype'),
+			 url('https://niqjohnson.github.io/plans-styles/mobile/fonts/icomoon.woff?shkte') format('woff'),
+			 url('https://niqjohnson.github.io/plans-styles/mobile/fonts/icomoon.svg?shkte#icomoon') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	body {
+		color: var( --black );
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+								  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+								 "Segoe UI Symbol";
+		font-size: 16px;
+	 }
+	 #main {
+		 font-size: var( --body-text-size );
+	 }
+	
+	/* ==========================================================================
+	   Buttons
+	   ========================================================================== */
+	
+	 .submitinput {
+		 padding: 8px 16px;
+		 border-radius: 8px;
+		 background-color: var( --black );
+		 color: var( --white );
+		 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+								   Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+								  "Segoe UI Symbol";
+		 font-size: 16px;
+		 font-weight: 300;
+	 }
+	
+	/* ==========================================================================
+	   Top navigation
+	   ========================================================================== */
+	
+	#logo {
+		width: 100%;
+		padding-bottom: var( --header-padding );
+		border-bottom: 1px solid var( --gray-40 );
+		position: absolute;
+		top: var( --header-padding );
+		left: 0;
+		text-align: center;
+	}
+	#logo a {
+		font-size: 0;
+		text-decoration: none;
+	}
+	#logo a:before {
+		display: inline-block;
+		width: var( --logo-radius );
+		height: var( --logo-radius );
+		border-radius: var( --logo-radius );
+		background-color: var( --black );
+		color: var( --white );
+		content: '[p]';
+		font-size: calc( var( --logo-radius ) - 22px );
+		font-weight: 200;
+		line-height: 42px;
+	}
+	
+	/* Icons (font from Icomoon) */
+	
+	#mainlink_edit:after,
+	.opt_link[href='quicklove.php']:after,
+	#autoread .autoreadentry:first-of-type a:after {
+		display: block;
+		color: var( --gray-60 );
+		font-family: 'icomoon' !important;
+		font-style: normal;
+		font-variant: normal;
+		font-weight: normal;
+		line-height: 1;
+	  speak: none;
+		text-decoration: none;
+	  text-transform: none;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	}
+	#mainlink_edit:after,
+	.opt_link[href='quicklove.php']:after {
+		position: absolute;
+		top: calc( ( var( --logo-radius ) / 2 ) + var( --header-padding ) );
+		left: 50%;
+		font-size: var( --icon-font-size );
+	}
+	#mainlink_edit:after {
+		margin-top: calc( -0.3 * var( --icon-font-size ) );
+		margin-left: calc( ( -0.5 * var( --icon-font-size ) ) - ( 1.5 * var( --logo-radius ) ) );
+		content: "\e906";
+	}
+	.opt_link[href='quicklove.php']:after {
+		margin-top: calc( -0.3 * var( --icon-font-size ) );
+		margin-left: calc( ( -0.5 * var( --icon-font-size ) ) + ( 1.5 * var( --logo-radius ) ) );
+		content: "\e9da";
+	}
+	#autoread .autoreadentry:first-of-type a:after {
+		position: fixed;
+		bottom: 6%;
+		right: var( --gutter-width );
+		background-color: var( --white );
+		border-radius: 116px;
+		color: var( --black );
+		content: "\ea42";
+		font-size: 60px;
+	}
+	#autoread .autoreadlevel.even.first .autoreadentry:first-of-type a:after {
+		z-index: 10;
+	}
+	#autoread .autoreadlevel.odd .autoreadentry:first-of-type a:after {
+		z-index: 9;
+	}
+	#autoread .autoreadlevel.even.last .autoreadentry:first-of-type a:after {
+		z-index: 8;
+	}
+	
+	/* ==========================================================================
+		 Read plan
+	   ========================================================================== */
+	
+	.plan #header {
+		margin-bottom: 38px;
+	}
+	.plan #header ul {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+		text-align: center;
+	}
+	.plan .username {
+		order: 1;
+		margin-bottom: 0.25rem;
+		font-size: 34px;
+		font-weight: 600;
+	}
+	.plan .username .title {
+		display: none;
+	}
+	.plan .lastupdated,
+	.plan .lastlogin {
+		display: none;
+	}
+	.plan .planname {
+		order: 2;
+		color: var( --gray-60 );
+		font-size: 16px;
+	}
+	.plan .planname .title {
+		display: none;
+	}
+	.plan .plan_text {
+		line-height: 1.5;
+		word-wrap: break-word;
+	}
+	#autoreadadd {
+		padding: 20px var( --gutter-width );
+		border-top: 1px solid var( --gray-40 );
+		border-bottom: 1px solid var( --gray-40 );
+		margin: 12px calc( -1 * var( --gutter-width ) ) 0;
+	}
+	#readadd_levels {
+		display: inline-block;
+	}
+	#autoreadadd .radioinput {
+		display: inline-block;
+		margin-right: 4px;
+		color: var( --gray-80 );
+		font-size: var( --body-text-size );
+	}
+	#autoreadadd .radioinput input[type='radio'] {
+		width: 16px;
+		height: 16px;
+		border-radius: 16px;
+	}
+	#autoreadadd .submitinput {
+		margin-top: -8px;
+		float: right;
+	}
+	#block {
+		padding: 20px 0;
+	}
+	#block + .infomessage {
+		color: var( --gray-80 );
+		font-size: 2.20px;
+	}
+	
+	/* ==========================================================================
+	   Edit plan
+	   ========================================================================== */
+	
+	#editbox {
+		position: relative;
+	}
+	#edit_textarea {
+		box-sizing: border-box;
+		display: block;
+		width: 100%;
+		height: 40vh;
+		padding: 0;
+		border: none;
+		box-shadow: none;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+								  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+								 "Segoe UI Symbol";
+		font-size: 16px;
+		line-height: 1.4;
+	}
+	#edit_textarea + br {
+		display: none;
+	}
+	#edit_fill_meter {
+		padding: 20px var( --gutter-width );
+		border-top: 1px solid var( --gray-40 );
+		border-bottom: 1px solid var( --gray-40 );
+		margin: 0 calc( -1 * var( --gutter-width ) );
+		background-color: var( --gray-5 );
+		text-align: right;
+	}
+	#edit_fill_meter .fill_percent {
+		margin-right: var( --gutter-width );
+		font-size: 12px;
+	}
+	#editbox .submitinput {
+		position: absolute;
+		 left: var( --gutter-width );
+		 bottom: 2.20px;
+	}
+	
+	/* ==========================================================================
+	   Search and quicklove
+	   ========================================================================== */
+	
+	#searchform {
+		padding: 0 0 38px 0;
+	}
+	#searchform > form > div {
+		display: flex;
+		align-items: center;
+	}
+	#searchform #search_opts {
+		flex: 2 auto;
+		padding-right: 12px;
+		position: relative;
+	}
+	#searchform #search_opts .checkboxinput {
+		margin-top: 8px;
+		position: absolute;
+	}
+	#mysearch {
+		box-sizing: border-box;
+		width: 100%;
+		font-size: 16px;
+	}
+	#planlove0 {
+		display: inline;
+		width: 16px;
+		height: 16px;
+	}
+	#planlove0 + .prompt_description {
+		font-size: 16px;
+		vertical-align: top;
+	}
+	#search_results {
+		list-style-type: none;
+		font-size: var( --body-text-size );
+	}
+	#search_results > li + li {
+		padding-top: 1em;
+		border-top: 1px solid var( --gray-40 );
+		margin-top: 1em;
+	}
+	.result_user_group .planlove {
+		display: inline-block;
+		margin-bottom: 0.25em;
+		font-size: 20px;
+		font-weight: 600;
+	}
+	.result_user_group > span {
+		color: var( --gray-80 );
+		font-size: 12px;
+	}
+	.result_user_group > span:before {
+		content: '(';
+	}
+	.result_user_group > span:after {
+		content: ')';
+	}
+	.result_sublist {
+		padding: 0;
+		list-style-type: none;
+	}
+	.result_sublist > li + li {
+		margin-top: 1em;
+	}
+	
+	/* ==========================================================================
+	   Planwatch
+	   ========================================================================== */
+	
+	#planwatchtimeform {
+		margin-bottom: 38px;
+	}
+	#planwatchtimeform .form_prompt {
+		margin-bottom: 4px;
+	}
+	#mytime {
+		font-size: 4.20px;
+	}
+	#new_plan_list > li + li {
+		margin-top: 0.5em;
+	}
+	
+	/* ==========================================================================
+	   Bottom navigation
+	   ========================================================================== */
+	
+	#nav {
+		border-top: 1px solid var( --gray-40 );
+		padding: 22px var( --gutter-width );
+		margin-top: 18px;
+		background-color: var( --gray-5 );
+	}
+	#nav > div {
+		display: flex;
+		flex-flow: row wrap;
+	}
+	#finger {
+		flex: 1 100%;
+		margin-bottom: 22px;
+	}
+	#links,
+	#autoread {
+		flex: 1 auto;
+	}
+	#finger > form > div {
+		display: flex;
+		align-items: center;
+	}
+	#finger .textinput {
+		flex: 2 auto;
+		padding-right: 12px;
+	}
+	#searchname {
+		box-sizing: border-box;
+		width: 100%;
+		font-size: 18px;
+	}
+	#links > h2,
+	#autoread > h2 {
+		margin: 0 0 8px 0;
+		font-size: 20px;
+		font-weight: 300;
+		line-height: 1;
+	}
+	#links .linkslist,
+	#autoread ul {
+		padding: 0;
+		margin: 0;
+		font-size: 16px;
+		list-style-type: none;
+	}
+	#links .linkslist li + li,
+	.autoreadentry + .autoreadentry {
+		margin-top: 4px;
+	}
+	.autoreadlevel + .autoreadlevel {
+		margin-top: 12px;
+	}
+	.autoreadname {
+		margin-bottom: 4px;
+	}
+	.autoreadname .autoreadlink,
+	.autoreadname .markasread {
+		color: var( --black );
+		font-size: 12px;
+		font-weight: 600;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	
+	/* ==========================================================================
+	   Footer
+	   ========================================================================== */
+	
+	#footer {
+		display: flex;
+		flex-direction: column;
+		background-color: var( --gray-5 );
+	}
+	#justupdated,
+	#poweredby,
+	#legal {
+		flex-direction: column;
+		padding-right: var( --gutter-width );
+		padding-left: var( --gutter-width );
+	}
+	#justupdated {
+		order: 1;
+		padding-bottom: 12px;
+		border-bottom: 1px solid var( --gray-40 );
+		margin-bottom: 12px;
+		font-size: var( --body-text-size );
+	}
+	#poweredby,
+	#legal {
+		color: var( --gray );
+		font-size: 12px;
+	}
+	#poweredby {
+		order: 3;
+	}
+	#poweredby > div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	#poweredby > div .logo {
+		display: block;
+		margin: 1.4em 0 2.8em 0;
+		order: 2;
+	}
+	#poweredby > div > span {
+		display: block;
+		order: 1;
+	}
+	#legal {
+		order: 2;
+		margin-bottom: 1.4em;
+	}
