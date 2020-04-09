@@ -49,9 +49,9 @@ function populate_page(PlansPage $page, $dbh, $idcookie) {
     // get the global stylesheet
     $page->stylesheets['global'] = 'styles/global.css';
     // get default mobile stylesheet
-    $page->stylesheets['mobile'] = 'styles/mobile.css';
+    $page->stylesheets['mobile_only'] = 'styles/mobile.css';
     // get user stylesheet
-    $page->stylesheets['user'] = $user->stylesheet;
+    $page->stylesheets['desktop_only'] = $user->stylesheet;
     $myprivl = get_myprivl();
     $page->autoreadpriority = $myprivl;
     $mp = new MainPanel();

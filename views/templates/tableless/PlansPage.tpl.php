@@ -8,9 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php foreach($this->stylesheets as $stylesheet_type => $css): ?>
 	<?php
-		if ($stylesheet_type==='user') {
+		if ($stylesheet_type==='desktop_only') {
 			$media = 'screen and (min-width: 601px)';
-		} elseif ($stylesheet_type==='mobile') {
+		} elseif ($stylesheet_type==='mobile_only') {
 			$media = 'screen and (max-width: 600px)';
 		} else {
 			$media = 'screen';
