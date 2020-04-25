@@ -62,7 +62,7 @@ a:active {
 ========================================================================== */
 
 body {
-	background-color: var(--white);
+	background-color: var(--gray-5);
 	margin: 0;
 }
 
@@ -82,15 +82,21 @@ body::before {
 	z-index: 1;
 }
 
+#wrapper {
+	background-color: var(--white);
+}
+
 #main {
-	margin: calc(var(--header-height) + 1rem) var(--outer-gutter) 0 var(--outer-gutter);
+	margin: 0 var(--outer-gutter) 0 var(--outer-gutter);
+	padding-top: calc(var(--header-height) + 1rem);
 }
 
 /* ==========================================================================
 	Forms
 ========================================================================== */
 
-.textinput input[type="text"] {
+.textinput input[type="text"],
+textarea {
 	background-color: var(--white);
 	border: 1px solid var(--gray-80);
 	border-radius: 0.25rem;
@@ -110,7 +116,8 @@ body::before {
 	color: var(--black);
 	font-size: 0.75rem;
 	font-weight: 700;
-	padding: calc(var(--body-text-size) / 2);
+	height: 2rem;
+	padding: calc(var(--body-text-size) / 3);
 	-webkit-appearance: none;
 }
 
@@ -549,6 +556,85 @@ a.markasread {
 
 .plan_text {
 	line-height: 1.6em;
+}
+
+/* ==========================================================================
+	Edit plan
+========================================================================== */
+
+#editform {
+	padding-bottom: 3rem;
+	position: relative;
+}
+
+#editform::after {
+	color: var(--gray-dark);
+	content: 'Edit';
+	font-size: 1.5rem;
+	font-weight: 600;
+	height: var(--header-height);
+	left: var(--outer-gutter);
+	line-height: var(--header-height);
+	position: fixed;
+	top: 0;
+	z-index: 4;
+}
+
+#edit_textarea {
+	border-bottom: none;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	display: block;
+	height: 28vh;
+	line-height: 1.4rem;
+	resize: none;
+	width: 100%;
+}
+
+#edit_textarea + br {
+	display: none;
+}
+
+#edit_textarea:focus {
+	outline: none;
+}
+
+.fill_bar {
+	display: none;
+}
+
+#edit_fill_meter,
+.fill_percent,
+#editform .submitinput {
+	position: absolute;
+}
+
+#edit_fill_meter {
+	background-color: var(--gray-5);
+	border-bottom: 1px solid var(--gray-80);
+	border-bottom-left-radius: 0.25rem;
+	border-bottom-right-radius: 0.25rem;
+	border-left: 1px solid var(--gray-80);
+	border-right: 1px solid var(--gray-80);
+	border-top: 1px solid var(--rule-color);
+	bottom: 0;
+	height: 3rem;
+	width: 100%;
+}
+
+.fill_percent {
+	bottom: 0.5rem;
+	color: var(--gray);
+	font-size: 0.875rem;
+	font-weight: 700;
+	left: 0.5rem;
+	line-height: 2rem;
+	height: 2rem;
+}
+
+#editform .submitinput {
+	bottom: 0.5rem;
+	right: 0.5rem;
 }
 
 /* ==========================================================================
