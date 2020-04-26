@@ -19,6 +19,8 @@
 	--gray-20:			#d2d3d5;
 	--gray-10:			#e7e8e9;
 	--gray-5:			#f7f8f9;
+	--gold:				#ff9e1b;
+	--gold-10:			#fff6ec;
 	--pacific:			#0072ce;
 	--red:				#d14124;
 	--white:			#ffffff;
@@ -581,12 +583,12 @@ a.markasread {
 }
 
 #edit_textarea {
-	border-bottom: none;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+	border: none;
+	border-radius: 0;
 	display: block;
 	height: 28vh;
 	line-height: 1.4rem;
+	padding: 0;
 	resize: none;
 	width: 100%;
 }
@@ -612,14 +614,11 @@ a.markasread {
 #edit_fill_meter {
 	background-color: var(--gray-5);
 	border-bottom: 1px solid var(--gray-80);
-	border-bottom-left-radius: 0.25rem;
-	border-bottom-right-radius: 0.25rem;
-	border-left: 1px solid var(--gray-80);
-	border-right: 1px solid var(--gray-80);
 	border-top: 1px solid var(--rule-color);
 	bottom: 0;
 	height: 3rem;
-	width: 100%;
+	left: calc(var(--outer-gutter) * -1);
+	right: calc(var(--outer-gutter) * -1);
 }
 
 .fill_percent {
@@ -627,7 +626,7 @@ a.markasread {
 	color: var(--gray);
 	font-size: 0.875rem;
 	font-weight: 700;
-	left: 0.5rem;
+	left: var(--outer-gutter);
 	line-height: 2rem;
 	height: 2rem;
 }
@@ -635,6 +634,29 @@ a.markasread {
 #editform .submitinput {
 	bottom: 0.5rem;
 	right: 0.5rem;
+}
+
+/* ==========================================================================
+	Info message
+========================================================================== */
+
+.infomessage {
+	background-color: var(--gold-10);
+	border-bottom: 1px solid var(--gold);
+}
+
+#main .infomessage {
+	font-size: 0.9375rem;
+	font-weight: 500;
+	margin: -1rem
+			calc(var(--outer-gutter) * -1)
+			1rem
+			calc(var(--outer-gutter) * -1);
+	padding: 1rem var(--outer-gutter);
+}
+
+#planspage_readplan .infomessage .title {
+	display: none;
 }
 
 /* ==========================================================================
