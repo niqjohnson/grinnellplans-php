@@ -23,19 +23,28 @@ let mobileNav = {
 		let mobileNavTrigger = document.querySelectorAll('#mobile_nav_trigger')[0];
 		let body = document.querySelectorAll('body')[0];
 		body.dataset.menuVisible = this.isVisible;
+		this.bindEvents(mobileNavTrigger, body);
+	},
+	bindEvents: function(mobileNavTrigger, body) {
 		mobileNavTrigger.addEventListener('click', (event) => {
 			if (this.isVisible === true) {
-				window.scrollTo(0, parseInt(body.style.top || '0') * -1);
-				body.style.position = '';
-				body.style.top = '';
-				this.isVisible = false;
+				this.hideMenu(body);
 			} else {
-				body.style.position = 'fixed';
-				body.style.top = `-${window.scrollY}px`;
-				this.isVisible = true;
+				this.showMenu(body);
 			}
 			body.dataset.menuVisible = this.isVisible;
 		});
+	},
+	showMenu: function(body) {
+		body.style.top = `-${window.scrollY}px`;
+		body.style.position = 'fixed';
+		this.isVisible = true;
+	},
+	hideMenu: function(body) {
+		window.scrollTo(0, parseInt(body.style.top || '0') * -1);
+		body.style.position = '';
+		body.style.top = '';
+		this.isVisible = false;
 	},
 	isVisible: false
 }

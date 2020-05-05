@@ -21,6 +21,7 @@
 	--gray-5:			#f7f8f9;
 	--gold:				#ff9e1b;
 	--gold-10:			#fff6ec;
+	--navy:				#254b87;
 	--pacific:			#0072ce;
 	--red:				#d14124;
 	--white:			#ffffff;
@@ -72,12 +73,13 @@ body * {
 	box-sizing: border-box;
 }
 
-body::before {
+#nav::after {
 	background-color: var(--white);
 	border-bottom: 1px solid var(--rule-color);
 	content: '';
 	display: block;
 	height: var(--header-height);
+	left: 0;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -112,15 +114,15 @@ textarea {
 }
 
 .submitinput {
-	background-color: transparent;
-	border: 1px solid var(--gray-80);
-	border-radius: 0.25rem;
-	color: var(--black);
-	font-size: 0.75rem;
-	font-weight: 700;
-	height: 2rem;
-	padding: calc(var(--body-text-size) / 3);
 	-webkit-appearance: none;
+	background-color: transparent;
+	border: 1px solid var(--black);
+	color: var(--black);
+	font-size: 0.875rem;
+	font-variant-caps: all-small-caps;
+	font-weight: 600;
+	line-height: 1.4;
+	padding: calc(var(--body-text-size) / 4) calc(var(--body-text-size) / 1.5);
 }
 
 /* ==========================================================================
@@ -130,35 +132,66 @@ textarea {
 /* Structure ============================================================= */
 
 #nav > div {
+	background-color: var(--gray-5);
 	display: flex;
 	flex-flow: column;
 	height: 100%;
-	left: 0;
-	overflow-y: scroll;
+	left: 101%;
 	position: fixed;
-	top: 101vh;
-	transition: top var(--menu-duration) ease-in-out;
-	width: 100%;
-	z-index: 2;
-}
-
-#main,
-#footer {
-	transition: opacity var(--menu-duration) ease-in-out;
+	top: 0;
+	transition: left var(--menu-duration) ease-in-out;
+	width: 75%;
+	z-index: 4;
 }
 
 [data-menu-visible='true'] #nav > div {
-	top: 0;
+	left: 25%;
+	overflow-y: scroll;
 }
 
 [data-menu-visible='true'] #main,
 [data-menu-visible='true'] #footer {
-	opacity: 0;
 	overflow: hidden;
 }
 
-[data-menu-visible='false'] #nav > div {
-	overflow-y: unset;
+#mobile_nav_trigger::before {
+	background-color: var(--black);
+	content: '';
+	display: block;
+	height: 100%;
+	left: 0;
+	opacity: 0;
+	position: fixed;
+	top: 0;
+	transition: opacity calc(var(--menu-duration) / 2) ease-in-out;
+	visibility: hidden;
+	width: 100%;
+	z-index: 3;
+}
+
+[data-menu-visible='true'] #mobile_nav_trigger::before {
+	opacity: 0.6;
+	visibility: visible;
+}
+
+#mobile_nav_trigger,
+#mainlink_edit::after,
+.opt_link[href="quicklove.php"]::after {
+	transition: top calc(var(--menu-duration) / 2) ease-in-out;
+}
+
+[data-menu-visible='true'] #mobile_nav_trigger,
+[data-menu-visible='true'] #mainlink_edit::after,
+[data-menu-visible='true'] .opt_link[href="quicklove.php"]::after {
+	top: calc(var(--header-height) * -1);
+}
+
+#autoread .autoreadentry:first-of-type a::after {
+	transition: bottom calc(var(--menu-duration) / 2) ease-in-out;
+}
+
+[data-menu-visible='true'] #autoread .autoreadentry:first-of-type a::after {
+	bottom: calc(var(--outer-gutter) * -1);
 }
 
 /* Trigger =============================================================== */
@@ -177,10 +210,6 @@ textarea {
 	z-index: 2;
 }
 
-[data-menu-visible='true'] #mobile_nav_trigger {
-	z-index: 3;
-}
-
 /* TODO: Add icons */
 #mobile_nav_trigger::after {
 	content: '\039e';
@@ -190,11 +219,6 @@ textarea {
 	outline: none;
 }
 
-[data-menu-visible='true'] #mobile_nav_trigger {
-	background-color: var(--gray-dark);
-	color: var(--white);
-}
-
 .mobile_nav_trigger_text {
 	display: none;
 }
@@ -202,29 +226,15 @@ textarea {
 /* Finger ================================================================ */
 
 #finger {
-	background-color: #fffffff7;
+	background-color: var(--white);
 	border-bottom: 1px solid var(--rule-color);
-	display: block;
-	height: var(--header-height);
-	order: 1;
-	position: fixed;
-	top: -100%;
-	transition: top var(--menu-duration) ease-in-out;
-	width: 100%;
-	z-index: 4;
-}
-
-[data-menu-visible='true'] #finger {
-	top: 0;
 }
 
 #finger > form > div {
 	align-items: center;
-	border-right: 1px solid var(--rule-color);
 	display: flex;
 	height: var(--header-height);
-	margin: 0 calc(var(--icon-size) + (2 * var(--outer-gutter))) 0 var(--outer-gutter);
-	padding-right: calc(var(--outer-gutter) / 2);
+	padding: 0 var(--outer-gutter);
 }
 
 #finger .textinput,
@@ -244,6 +254,7 @@ textarea {
 #finger .textinput::after {
 	color: var(--gray-dark);
 	display: block;
+	font-size: 2rem;
 }
 
 #finger .textinput::before {
@@ -257,28 +268,20 @@ textarea {
 }
 
 #finger #searchname {
+	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid var(--gray-80);
 	border-radius: 0;
-	font-size: 1.5rem;
-	font-weight: 600;
 	margin: 0 0.5rem;
-	padding: 0;
+	padding: 0 0 2px 0;
 	width: 100%;
 }
 
 #finger .submitinput {
-	border: none;
-	border-radius: 0;
+	margin-top: 6px;
 }
 
 /* Autoread ============================================================== */
-
-#autoread > ul,
-#logo,
-#links {
-	background-color: var(--gray-5);
-}
 
 #autoread {
 	order: 2;
@@ -296,8 +299,7 @@ textarea {
 }
 
 #autoread > ul {
-	margin-top: var(--header-height);
-	padding-top: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 .autoreadlevel + .autoreadlevel {
@@ -407,6 +409,13 @@ a.markasread {
 	color: var(--red);
 }
 
+/* Since the logo is styled to look like the top link in the list, we
+need to hide the second, optional home link if it appears */
+
+.linkslist a[href="home.php"] {
+	display: none;
+}
+
 /* Floating buttons ====================================================== */
 
 #mainlink_edit::after {
@@ -445,26 +454,57 @@ a.markasread {
 	text-align: center;
 }
 
-#autoread .autoreadentry:first-of-type a::after {
-	background-color: var(--white);
-	border: 2px solid var(--rule-color);
-	border-radius: var(--icon-size);
-	bottom: var(--outer-gutter);
+[data-menu-visible="false"] #autoread .autoreadentry:first-of-type a,
+[data-menu-visible="false"] #autoread .autoreadentry:last-of-type::after {
 	box-sizing: border-box;
-	height: calc(1.75 * var(--icon-size));
+	letter-spacing: -0.025rem;
 	position: fixed;
 	right: var(--outer-gutter);
-	width: calc(1.75 * var(--icon-size));
-	/* TODO: Add icons */
-	color: var(--black);
-	content: '\2192';
-	font-size: 1.5rem;
-	font-weight: 700;
-	line-height: calc(1.6 * var(--icon-size));
-	text-align: center;
+	width: 145px;
 }
 
-[data-menu-visible='true'] #autoread .autoreadentry:first-of-type a::after {
+[data-menu-visible="false"] #autoread .autoreadentry:first-of-type a {
+	/* TODO: Add icons */
+	background-color: var(--white);
+	border: 1px solid var(--rule-color);
+	border-radius: 2rem;
+	bottom: var(--outer-gutter);
+	box-shadow: -1px 1px 1px 0 #10182044;
+	color: var(--pacific);
+	font-size: 1.25rem;
+	font-variant-caps: all-small-caps;
+	font-weight: 500;
+	height: 60px;
+	padding: 0.5rem 2.5rem 0 1rem;
+}
+
+[data-menu-visible="false"] #autoread .autoreadentry:first-of-type a::before {
+	content: '[';
+}
+
+[data-menu-visible="false"] #autoread .autoreadentry:first-of-type a::after {
+	content: ']';
+}
+
+[data-menu-visible="false"] #autoread .autoreadentry:last-of-type::after {
+	bottom: var(--outer-gutter);
+	color: var(--gray-60);
+	content: counter(unread) ' unread';
+	font-size: 0.9375rem;
+	font-variant-caps: all-small-caps;
+	margin: 0 -1rem 0.8125rem 0;
+	pointer-events: none;
+}
+
+#autoread {
+	counter-reset: unread;
+}
+
+#autoread .autoreadentry {
+	counter-increment: unread;
+}
+
+[data-menu-visible='true'] #autoread .autoreadentry:last-of-type a::after {
 	display: none;
 }
 
@@ -493,7 +533,7 @@ a.markasread {
 	height: var(--header-height);
 	position: fixed;
 	top: 0;
-	z-index: 4;
+	z-index: 2;
 }
 
 #header ul .username .title {
@@ -557,7 +597,7 @@ a.markasread {
 }
 
 .plan_text {
-	line-height: 1.6em;
+	line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -579,7 +619,7 @@ a.markasread {
 	line-height: var(--header-height);
 	position: fixed;
 	top: 0;
-	z-index: 4;
+	z-index: 2;
 }
 
 #edit_textarea {
@@ -587,7 +627,7 @@ a.markasread {
 	border-radius: 0;
 	display: block;
 	height: 28vh;
-	line-height: 1.4rem;
+	line-height: 1.4;
 	padding: 0;
 	resize: none;
 	width: 100%;
@@ -640,12 +680,12 @@ a.markasread {
 	Info message
 ========================================================================== */
 
-.infomessage {
+#planspage_readplan .infomessage {
 	background-color: var(--gold-10);
 	border-bottom: 1px solid var(--gold);
 }
 
-#main .infomessage {
+#planspage_readplan .infomessage {
 	font-size: 0.9375rem;
 	font-weight: 500;
 	margin: -1rem
@@ -655,7 +695,28 @@ a.markasread {
 	padding: 1rem var(--outer-gutter);
 }
 
-#planspage_readplan .infomessage .title {
+.infomessage .title {
+	display: none;
+}
+
+/* ==========================================================================
+	Preferences
+========================================================================== */
+
+.preferences::after {
+	color: var(--gray-dark);
+	content: 'Preferences';
+	font-size: 1.5rem;
+	font-weight: 600;
+	height: var(--header-height);
+	left: var(--outer-gutter);
+	line-height: var(--header-height);
+	position: fixed;
+	top: 0;
+	z-index: 2;
+}
+
+#planspage_prefs #main .heading1 {
 	display: none;
 }
 
