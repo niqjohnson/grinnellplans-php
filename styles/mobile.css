@@ -99,28 +99,48 @@ body * {
 	Forms
 ========================================================================== */
 
+.form_prompt + .form_prompt {
+	margin-top: 1rem;
+}
+
+.form_prompt + .submitinput {
+	margin-top: 1.5rem;
+}
+
+.prompt_label {
+	color: var(--dark-gray);
+	display: block;
+	font-variant-caps: all-small-caps;
+	font-weight: 500;
+	margin-bottom: 0.25rem;
+}
+
 .textinput input[type="text"],
+.passwordinput input[type="password"],
 textarea {
 	background-color: var(--white);
 	border: 1px solid var(--gray-80);
-	border-radius: 0.25rem;
+	border-radius: 0;
+	display: block;
 	font-size: 1rem;
 	padding: calc(var(--body-text-size) / 2);
 	-webkit-appearance: none;
 }
 
-.textinput input[type="text"]:focus {
+.textinput input[type="text"]:focus,
+.passwordinput input[type="password"]:focus {
 	outline: none;
 }
 
 .submitinput {
 	-webkit-appearance: none;
-	background-color: transparent;
+	background-color: var(--white);
 	border: 1px solid var(--black);
 	color: var(--black);
-	font-size: 0.875rem;
+	font-size: 1rem;
 	font-variant-caps: all-small-caps;
 	font-weight: 600;
+	letter-spacing: -0.01rem;
 	line-height: 1.4;
 	padding: calc(var(--body-text-size) / 4) calc(var(--body-text-size) / 1.5);
 }
@@ -274,7 +294,7 @@ textarea {
 	border-radius: 0;
 	margin: 0 0.5rem;
 	padding: 0 0 2px 0;
-	width: 100%;
+	width: calc(100% - 3rem);
 }
 
 #finger .submitinput {
@@ -509,13 +529,37 @@ need to hide the second, optional home link if it appears */
 }
 
 /* ==========================================================================
+	Info message
+========================================================================== */
+
+.infomessage .title {
+	display: none;
+}
+
+/* ==========================================================================
 	Read plan
 ========================================================================== */
 
-#main .plan {
+#planspage_readplan #main > div {
+	display: flex;
+	flex-direction: column;
+}
+
+#planspage_readplan #main > div .plan {
+	order: 1;
 	padding-bottom: 2rem;
 	position: relative;
 }
+
+#planspage_readplan #main > div #block {
+	order: 3;
+}
+
+#planspage_readplan #main > div #block + .infomessage {
+	order: 2;
+}
+
+/* Header ================================================================ */
 
 #header ul {
 	border-bottom: 1px solid var(--rule-color);
@@ -596,8 +640,62 @@ need to hide the second, optional home link if it appears */
 	display: none;
 }
 
+/* Plan text ============================================================= */
+
 .plan_text {
 	line-height: 1.6;
+}
+
+/* Set autoread level ==================================================== */
+
+#autoreadadd {
+	background-color: var(--gray-5);
+	border-bottom: 1px solid var(--rule-color);
+	border-top: 1px solid var(--rule-color);
+	margin: 0 calc(-1 * var(--outer-gutter));
+	padding: 1rem var(--outer-gutter);
+}
+
+#autoreadadd form > div {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+#readadd_levels .radioinput {
+	display: inline-block;
+	margin-right: 0.5rem;
+}
+
+/* Info messages ========================================================= */
+
+#planspage_readplan .infomessage {
+	background-color: var(--gold-10);
+	border-bottom: 1px solid var(--gold);
+	font-size: 0.9375rem;
+	font-weight: 500;
+	margin: -1rem
+			calc(var(--outer-gutter) * -1)
+			1rem
+			calc(var(--outer-gutter) * -1);
+	padding: 1rem var(--outer-gutter);
+}
+
+#planspage_readplan #block + .infomessage {
+	background-color: var(--white);
+	border-bottom: none;
+	border-top: 1px solid var(--rule-color);
+	font-size: 0.875rem;
+	font-weight: 400;
+	margin-bottom: 0;
+	margin-top: 2rem;
+	padding-top: 2rem;
+}
+
+/* Block ================================================================= */
+
+#block {
+	padding: 0;
 }
 
 /* ==========================================================================
@@ -677,29 +775,6 @@ need to hide the second, optional home link if it appears */
 }
 
 /* ==========================================================================
-	Info message
-========================================================================== */
-
-#planspage_readplan .infomessage {
-	background-color: var(--gold-10);
-	border-bottom: 1px solid var(--gold);
-}
-
-#planspage_readplan .infomessage {
-	font-size: 0.9375rem;
-	font-weight: 500;
-	margin: -1rem
-			calc(var(--outer-gutter) * -1)
-			1rem
-			calc(var(--outer-gutter) * -1);
-	padding: 1rem var(--outer-gutter);
-}
-
-.infomessage .title {
-	display: none;
-}
-
-/* ==========================================================================
 	Preferences
 ========================================================================== */
 
@@ -709,14 +784,239 @@ need to hide the second, optional home link if it appears */
 	font-size: 1.5rem;
 	font-weight: 600;
 	height: var(--header-height);
-	left: var(--outer-gutter);
+	left: calc(var(--outer-gutter) + 1rem);
 	line-height: var(--header-height);
 	position: fixed;
 	top: 0;
 	z-index: 2;
 }
 
+#planspage_prefs.preferences::after {
+	left: var(--outer-gutter);
+}
+
+/* Preferences list ====================================================== */
+
+#planspage_prefs #wrapper {
+	background-color: var(--gray-5);
+}
+
 #planspage_prefs #main .heading1 {
+	display: none;
+}
+
+#preflist {
+	list-style-type: none;
+	margin: 0 calc(-1 * var(--outer-gutter));
+	padding: 0;
+}
+
+#planspage_prefs #preflist .heading2,
+#preflist::before {
+	border-bottom: 1px solid var(--rule-color);
+	color: var(--gray-80);
+	font-size: 0.75rem;
+	font-weight: 600;
+	margin: 0;
+	padding: 0 var(--outer-gutter) 0.5rem var(--outer-gutter);
+}
+
+#planspage_prefs #preflist .heading2 {
+	background-color: var(--gray-5);
+	margin-top: 2rem;
+}
+
+#preflist::before {
+	content: 'Manage';
+	display: block;
+}
+
+#preflist > li {
+	background-color: var(--white);
+}
+
+#preflist a.preflink {
+	border-bottom: 1px solid var(--rule-color);
+	color: var(--gray-dark);
+	display: block;
+	margin-left: var(--outer-gutter);
+	padding: 1rem var(--outer-gutter) 1rem 0;
+	position: relative;
+	text-decoration: none;
+}
+
+#preflist a.preflink::after {
+	color: var(--gray-40);
+	content: '\203A';
+	font-size: 1.75rem;
+	font-weight: 300;
+	margin-top: -0.5625rem;
+	position: absolute;
+	right: var(--outer-gutter);
+}
+
+#preflist a.preflink[href="blocks.php"],
+#preflist a.preflink[href="links.php"] {
+	margin-left: 0;
+	padding-left: var(--outer-gutter);
+}
+
+/* Preferences form ====================================================== */
+
+.preferences #main .heading1,
+.preferences #main .heading2 {
+	font-size: 1.25rem;
+	font-weight: 500;
+	margin: 0 0 1.5rem 0;
+}
+
+.preferences #main .form_prompt input[type="text"],
+.preferences #main .form_prompt input[type="password"] {
+	width: 100%;
+}
+
+/* Info messages ========================================================= */
+
+.preferences #main .infomessage {
+	background-color: var(--gold-10);
+	border: 1px solid var(--gold);
+	font-size: 0.9375rem;
+	font-weight: 500;
+	padding: 1rem var(--outer-gutter);
+}
+
+/* Info messages as regular text ========================================= */
+
+/* In the preferences, info messages are used both as a success notification
+and as plain text in some forms, so we need to set them to look like plain
+text in those cases. */
+
+.preferences #main #passwordform ~ .infomessage,
+#planspage_email.preferences #main .infomessage,
+.preferences #main #blocking_header > .infomessage {
+	background-color: unset;
+	border: unset;
+	font-size: unset;
+	font-weight: unset;
+	padding: unset;
+}
+
+.preferences #main .infomessage + .infomessage {
+	margin-top: 1rem;
+}
+
+/* Some preference form paragraphs aren't  in <p>s, so we have to fake it */
+.preferences #main .infomessage .body br {
+	content: '';
+	display: block;
+	margin-bottom: 1rem;
+	line-height: 1;
+}
+
+.preferences #main .infomessage .body br + br {
+	display: none;
+}
+
+/* Radio/checkbox lists ================================================== */
+
+.preferences .radioinput,
+.preferences .checkboxinput {
+	position: relative;
+}
+
+.preferences .radioinput input[type="radio"],
+.preferences .checkboxinput input[type="checkbox"] {
+	position: absolute;
+}
+
+.preferences .radioinput .prompt_label,
+.preferences .radioinput .prompt_description,
+.preferences .checkboxinput .prompt_label,
+.preferences .checkboxinput .prompt_description {
+	display: block;
+	margin-left: 1.75rem;
+}
+
+.preferences .radioinput .prompt_label,
+.preferences .checkboxinput .prompt_label {
+	font-variant-caps: normal;
+	font-weight: 600;
+	margin-bottom: 0.125rem;
+}
+
+/* Hacky back button ===================================================== */
+
+.preferences #mainlink_prefs::after {
+	color: var(--gray-dark);
+	content: '\2039';
+	font-size: 1.5rem;
+	font-weight: 600;
+	height: var(--header-height);
+	position: fixed;
+	left: var(--outer-gutter);
+	line-height: var(--header-height);
+	top: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.preferences[data-menu-visible="true"] #mainlink_prefs::after {
+	pointer-events: none;
+}
+
+#planspage_prefs.preferences #mainlink_prefs::after {
+	display: none;
+}
+	
+
+/* Change password ======================================================= */
+
+#passwordform {
+	border-bottom: 1px solid var(--rule-color);
+	margin-bottom: 2rem;
+	padding-bottom: 2rem;
+}
+
+#guestpasswordform {
+	margin-top: 1rem;
+}
+
+/* Change email ========================================================== */
+
+#emailform {
+	margin-top: 1rem;
+}
+
+/* Blocking ============================================================== */
+
+#blocking_header {
+	margin-bottom: 1.5rem;
+}
+
+/* Interface options ====================================================== */
+
+#interfacesform .radioinput {
+	align-items: flex-start;
+	display: flex;
+}
+
+#interfacesform .prompt_description b {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 0.125rem;
+}
+
+#interfacesform .prompt_description b + br {
+	display: none;
+}
+
+/* Styles ================================================================ */
+
+#styleform input[value="custom"] + .prompt_description {
+	font-weight: 600;
+}
+
+#customstyle + #styleform {
 	display: none;
 }
 
